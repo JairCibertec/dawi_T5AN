@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import model.Categoria;
 import model.Producto;
 import model.Proveedor;
+import model.Usuario;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -141,6 +142,15 @@ public class FrmManteProd extends JFrame {
 		cboProveedores.setBounds(324, 102, 89, 22);
 		contentPane.add(cboProveedores);
 		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buscarProducto();
+			}
+		});
+		btnBuscar.setBounds(324, 63, 89, 23);
+		contentPane.add(btnBuscar);
+		
 		llenaCombo();
 	}
 
@@ -244,5 +254,40 @@ public class FrmManteProd extends JFrame {
 		em.getTransaction().commit();
 		em.close();
 		JOptionPane.showMessageDialog(this, "Producto registrado");
+	}
+	
+	void buscarProducto() {
+		//Encontrar y devolver los datos de un usuario según su código
+		
+		// 1. Fabrica el acceso a los datos => DAO
+		EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("mysql");
+		
+		// 2. Crea el manejador de entidades
+		EntityManager em = fabrica.createEntityManager();	
+			
+		// 3. Empezar mi transacción => registrar, actualizar o eliminar => En búsqueda no va em.getTransaction().begin();		
+			
+			
+		// 4. PROCESOS	
+		
+			//4.1 Buscar el usuario 
+			
+			Producto p = em.find(Producto.class, txtCodigo.getText());
+			
+			if(p== null) {
+				txtSalida.setText("Código no existe...");;
+			}else{
+				txtDescripcion.setText(p.getDes_prod());	
+				txtStock.setText(String.valueOf(p.getStk_prod()));
+				txtPrecio.setText(String.valueOf(p.getPre_prod()));	
+				cboCategorias.setSelectedIndex(p.getIdcategoria());
+				cboProveedores.setSelectedIndex(p.getIdprovedor());
+			}
+			
+			
+		
+		// 5. Cerrar transacción
+		
+		em.close();
 	}
 }
