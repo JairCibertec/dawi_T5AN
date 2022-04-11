@@ -152,6 +152,11 @@ public class FrmManteProd extends JFrame {
 		contentPane.add(btnBuscar);
 		
 		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actualizarProducto();
+			}
+		});
 		btnActualizar.setBounds(324, 97, 89, 23);
 		contentPane.add(btnActualizar);
 		
@@ -293,5 +298,9 @@ public class FrmManteProd extends JFrame {
 		// 5. Cerrar transacción
 		
 		em.close();
+	}
+	
+	void actualizarProducto() {
+		
 	}
 }
