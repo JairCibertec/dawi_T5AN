@@ -135,11 +135,11 @@ public class FrmManteProd extends JFrame {
 		contentPane.add(txtPrecio);
 		
 		JLabel lblProveedor = new JLabel("Proveedor:");
-		lblProveedor.setBounds(259, 106, 58, 14);
+		lblProveedor.setBounds(258, 134, 58, 14);
 		contentPane.add(lblProveedor);
 		
 		cboProveedores = new JComboBox();
-		cboProveedores.setBounds(324, 102, 89, 22);
+		cboProveedores.setBounds(324, 130, 89, 22);
 		contentPane.add(cboProveedores);
 		
 		JButton btnBuscar = new JButton("Buscar");
@@ -150,6 +150,10 @@ public class FrmManteProd extends JFrame {
 		});
 		btnBuscar.setBounds(324, 63, 89, 23);
 		contentPane.add(btnBuscar);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(324, 97, 89, 23);
+		contentPane.add(btnActualizar);
 		
 		llenaCombo();
 	}
